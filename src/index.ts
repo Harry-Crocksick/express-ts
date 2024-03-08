@@ -7,6 +7,7 @@ const port = process.env.PORT || 8088;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/tasks", taskRoutes);
 
 app.get("/", (req: Request, res: Response) => {
