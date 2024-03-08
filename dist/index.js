@@ -10,6 +10,7 @@ const app = (0, express_1.default)();
 const port = process.env.PORT || 8088;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use("/tasks", tasks_1.default);
 app.get("/", (req, res) => {
     res.json({ message: "Hello, World!" });
