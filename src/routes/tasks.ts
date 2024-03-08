@@ -68,7 +68,7 @@ router.delete("/:id", (req: Request, res: Response) => {
     res.status(404).send("Task Not Found!");
   } else {
     tasks.splice(index, 1);
-    res.status(204).send();
+    res.status(204).send("Successfully deleted!");
   }
 });
 
