@@ -37,7 +37,7 @@ router.get("/:id", (req: Request, res: Response) => {
   const task = tasks.find((task) => task.id === parseInt(req.params.id));
 
   if (!task) {
-    res.status(404).send("Task Not Found!");
+    res.status(404).json({ message: "Task Not Found!" });
   } else {
     res.json(task);
   }
@@ -53,7 +53,7 @@ router.put("/:id", taskValidationRules, (req: Request, res: Response) => {
   const task = tasks.find((task) => task.id === parseInt(req.params.id));
 
   if (!task) {
-    res.status(404).send("Task Not Found!");
+    res.status(404).json({ message: "Task Not Found!" });
   } else {
     task.title = req.body.title || task.title;
     task.description = req.body.description || task.description;
@@ -65,10 +65,10 @@ router.put("/:id", taskValidationRules, (req: Request, res: Response) => {
 router.delete("/:id", (req: Request, res: Response) => {
   const index = tasks.findIndex((task) => task.id === parseInt(req.params.id));
   if (index === -1) {
-    res.status(404).send("Task Not Found!");
+    res.status(404).json({ message: "Task Not Found!" });
   } else {
     tasks.splice(index, 1);
-    res.status(204).send("Successfully deleted!");
+    res.status(204).json({ message: "Successfully deleted!" });
   }
 });
 
