@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { body, validationResult } from "express-validator";
-import { Task } from "../lib/types";
+import { Task } from "../lib/types.js";
 
 const router = Router();
 let tasks: Task[] = [];

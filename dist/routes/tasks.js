@@ -1,19 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const express_validator_1 = require("express-validator");
-const router = (0, express_1.Router)();
+import { Router } from "express";
+import { body, validationResult } from "express-validator";
+const router = Router();
 let tasks = [];
 const taskValidationRules = [
-    (0, express_validator_1.body)("title").notEmpty().withMessage("Title is required"),
-    (0, express_validator_1.body)("description").notEmpty().withMessage("Description is required"),
-    (0, express_validator_1.body)("completed").isBoolean().withMessage("Completed must be a boolean"),
+    body("title").notEmpty().withMessage("Title is required"),
+    body("description").notEmpty().withMessage("Description is required"),
+    body("completed").isBoolean().withMessage("Completed must be a boolean"),
 ];
 router.get("/", (req, res) => {
     res.json(tasks);
 });
 router.post("/", taskValidationRules, (req, res) => {
-    const errors = (0, express_validator_1.validationResult)(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -36,7 +34,7 @@ router.get("/:id", (req, res) => {
     }
 });
 router.put("/:id", taskValidationRules, (req, res) => {
-    const errors = (0, express_validator_1.validationResult)(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -61,4 +59,5 @@ router.delete("/:id", (req, res) => {
         res.status(204).json({ message: "Successfully deleted!" });
     }
 });
-exports.default = router;
+export default router;
+//# sourceMappingURL=tasks.js.map

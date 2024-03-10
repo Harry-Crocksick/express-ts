@@ -1,6 +1,7 @@
 {
   "name": "express-ts",
   "packageManager": "yarn@4.1.1",
+  "type": "module",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "build": "tsc",

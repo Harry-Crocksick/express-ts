@@ -1,6 +1,6 @@
 import express, { Request, Response, Application, NextFunction } from "express";
 import cors from "cors";
-import taskRoutes from "./routes/tasks";
+import taskRoutes from "./routes/tasks.js";
 
 const app: Application = express();
 const port = process.env.PORT || 8088;

@@ -1,17 +1,12 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const tasks_1 = __importDefault(require("./routes/tasks"));
-const app = (0, express_1.default)();
+import express from "express";
+import cors from "cors";
+import taskRoutes from "./routes/tasks.js";
+const app = express();
 const port = process.env.PORT || 8088;
-app.use((0, cors_1.default)());
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
-app.use("/tasks", tasks_1.default);
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/tasks", taskRoutes);
 app.get("/", (req, res) => {
     res.json({ message: "Hello, World!" });
 });
@@ -22,3 +17,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log(`Express server is running at http://localhost:${port}`);
 });
+//# sourceMappingURL=index.js.map
